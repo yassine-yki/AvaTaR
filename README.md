@@ -1,9 +1,9 @@
 # Avatar AI
 
-Landing page for Avatar AI, an AI automation business serving small and medium-sized businesses and independent professionals.
+Landing page d'Avatar AI, une entreprise d'automatisation IA destinée aux PME et aux professionnels indépendants.
 
-## Deployment
+## Déploiement
 
-This is a dependency-free static website. Configure your hosting provider to publish the repository root; no build command or output directory is required.
+Ce site statique ne nécessite aucune dépendance. Configurez l'hébergeur pour publier la racine du dépôt ; aucune commande de build ni aucun dossier de sortie n'est requis.
 
-For local development, serve the repository with any static HTTP server and open `index.html`.
+Pour le développement local, servez le dépôt avec n'importe quel serveur HTTP statique et ouvrez `index.html`.

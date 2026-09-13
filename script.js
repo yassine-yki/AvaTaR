@@ -45,9 +45,9 @@ document.querySelector('.copy-button')?.addEventListener('click', async (event) 
   const text = button.closest('.reply-box')?.querySelector('p')?.textContent ?? '';
   try {
     await navigator.clipboard.writeText(text);
-    button.textContent = 'Copied';
-    window.setTimeout(() => { button.textContent = 'Copy reply'; }, 1500);
+    button.textContent = 'Copié';
+    window.setTimeout(() => { button.textContent = 'Copier la réponse'; }, 1500);
   } catch {
-    button.textContent = 'Select & copy';
+    button.textContent = 'Sélectionner et copier';
   }
 });
