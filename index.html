@@ -1,137 +1,57 @@
 <!doctype html>
 <html lang="fr">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="theme-color" content="#d4d3cf">
-  <meta name="description" content="Avatar AI conçoit des automatisations IA sécurisées et pilotées par l'humain pour les PME et les professionnels.">
-  <title>Avatar AI — Automatisation IA, contrôle humain</title>
-  <link rel="icon" type="image/svg+xml" href="./favicon.svg">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="./styles.css">
+ <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+ <meta name="theme-color" content="#171b18">
+ <meta name="description" content="Avatar AI conçoit des automatisations IA sécurisées et pilotées par l’humain pour les PME et les professionnels.">
+ <title>Automatisation IA, contrôle humain — Avatar AI</title>
+ <link rel="icon" type="image/svg+xml" href="./favicon.svg">
+ <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+ <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+ <link rel="stylesheet" href="./styles.css">
+
+ <script src="./script.js" defer></script>
 </head>
-<body>
-  <a class="skip-link" href="#main">Aller au contenu</a>
-  <header class="site-header" data-header>
-    <a class="brand" href="#top" aria-label="Accueil Avatar AI">
-      <span class="brand-mark"><svg viewBox="0 0 100 70" aria-hidden="true"><path d="M5 58 31 13l26 45H5Zm15-8h22L31 31 20 50Z" fill="currentColor" fill-rule="evenodd"/><path d="M43 15h51L68.5 61 43 15Zm18 10 7.5 14L76 25H61Z" fill="currentColor" fill-rule="evenodd"/></svg></span>
-      <span class="brand-name">AVATAR <b>AI</b></span>
-    </a>
-<a class="button button-small button-dark" href="./reservation.html">Réserver un échange <span aria-hidden="true">↗</span></a>
-    <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="mobile-menu"><span></span><span></span><span class="menu-label">Menu</span></button>
-    <nav class="mobile-nav" id="mobile-menu" aria-label="Navigation mobile">
-      <a href="#solutions"><small>01</small> Solutions</a><a href="#process"><small>02</small> Notre méthode</a><a href="#security"><small>03</small> Sécurité</a><a href="#faq"><small>04</small> Questions fréquentes</a><a href="./reservation.html"><small>05</small> Réserver un échange ↗</a><div class="menu-contact"><span>Une idée, un processus à simplifier ?</span><a href="mailto:contact@avatar-ai.xyz">contact@avatar-ai.xyz ↗</a></div>
-    </nav>
-  </header>
-
-  <main id="main">
-    <section class="hero" id="top" aria-labelledby="hero-title">
-      <img class="hero-sculpture" src="./assets/avatar-sculpture.svg" alt="" fetchpriority="high" width="1600" height="1100">
-      <div class="hero-content">
-        <p class="eyebrow">L’INTELLIGENCE AU SERVICE DU TRAVAIL.</p>
-        <h1 id="hero-title">Automatisez le répétitif.<br>Gardez le contrôle.</h1>
-      </div>
-      <div class="hero-bottom">
-        <p>Moins de tâches répétitives.<br>Plus de place pour l’essentiel.</p>
-        <div class="hero-links"><a class="hero-discover" href="./reservation.html">Réserver un échange <span aria-hidden="true">↗</span></a><a class="hero-discover" href="#solutions">Découvrir nos solutions <span aria-hidden="true">↓</span></a></div>
-      </div>
-      <span class="hero-caption">AVATAR AI — AUTOMATISATION, CONTRÔLE HUMAIN</span>
-    </section>
-
-    <section class="trust-bar" aria-label="Principes Avatar AI"><div><span>01</span> Validé par l'humain</div><div><span>02</span> Adapté à votre méthode de travail</div><div><span>03</span> Confidentialité dès la conception</div></section>
-
-    <section class="section problem-section">
-      <div class="section-intro reveal"><p class="eyebrow dark">01 / LIBÉRER LE POTENTIEL</p><h2>Votre équipe a mieux à faire que répéter les mêmes tâches chaque jour.</h2></div>
-      <div class="problem-grid">
-        <article class="problem-card reveal"><span>01</span><h3>Boîte mail saturée</h3><p>Les messages importants se perdent dans des boîtes de réception et des fils interminables.</p></article>
-        <article class="problem-card reveal"><span>02</span><h3>Tri manuel</h3><p>Vos équipes perdent des heures à classer, résumer et transmettre l'information.</p></article>
-        <article class="problem-card reveal"><span>03</span><h3>Réponses répétitives</h3><p>Les mêmes réponses sont réécrites alors qu'elles pourraient être préparées en quelques secondes.</p></article>
-        <article class="problem-card reveal"><span>04</span><h3>Passages de relais fragiles</h3><p>Des outils déconnectés créent des retards, des oublis et des tâches administratives inutiles.</p></article>
-      </div>
-      <p class="transition-line reveal">Avatar AI transforme les tâches récurrentes en <strong>workflows fiables et vérifiables.</strong></p>
-    </section>
-
-    <section class="section flagship" id="solutions">
-      <div class="flagship-copy reveal">
-        <p class="eyebrow light">02 / NOTRE ASSISTANT E-MAIL</p><h2>Transformez votre boîte mail en espace de travail organisé.</h2>
-        <p>Notre assistant e-mail IA rassemble l'essentiel de chaque nouveau message dans une vue claire, pour comprendre, prioriser et répondre plus vite.</p>
-        <ul class="feature-list"><li><span>01</span> Résumés instantanés et classement intelligent</li><li><span>02</span> Catégorie et niveau de priorité séparés</li><li><span>03</span> Réponses modifiables dans le ton souhaité</li><li><span>04</span> Validation humaine avant chaque envoi</li></ul>
-        <div class="control-note"><span>✦</span><p><strong>Vous gardez le contrôle.</strong><br>Avatar AI n'envoie, ne supprime, n'archive et ne modifie jamais vos e-mails automatiquement.</p></div>
-      </div>
-      <div class="dashboard-wrap reveal reveal-delay"><p class="demo-caption"><span class="status-dot"></span> DÉMONSTRATION INTERACTIVE · DONNÉES FICTIVES</p><div class="dashboard">
-        <aside class="dash-sidebar" aria-hidden="true"><div class="dash-logo">A</div><span class="dash-nav active">✉</span><span class="dash-nav">▤</span><span class="dash-nav">⚙</span></aside>
-        <div class="dash-main">
-          <div class="dash-heading"><div><small>ESPACE / BOÎTE DE RÉCEPTION</small><h3>Assistant e-mail</h3></div><span class="avatar-dot">NA</span></div>
-          <div class="dash-tabs" role="group" aria-label="Filtres des e-mails"><button class="active" aria-pressed="true" data-filter="all">Tous <b>3</b></button><button aria-pressed="false" data-filter="urgent">Prioritaires <b>1</b></button><button aria-pressed="false" data-filter="reply">À répondre <b>2</b></button></div>
-          <div class="mail-list">
-            <button class="mail-item active" data-tags="urgent reply"><span class="sender-avatar blue">AM</span><span class="mail-copy"><strong>Amelia Morgan</strong><b>Demande sur l'offre Entreprise</b><small>Nous souhaitons le déployer auprès de notre équipe client...</small></span><span class="mail-meta"><em>VENTE</em><time>2 min</time></span></button>
-            <button class="mail-item" data-tags="reply"><span class="sender-avatar">JK</span><span class="mail-copy"><strong>James Kim</strong><b>Suivi de la proposition</b><small>Merci pour votre proposition. J'ai encore quelques questions...</small></span><span class="mail-meta"><em>VENTE</em><time>18 min</time></span></button>
-            <button class="mail-item" data-tags=""><span class="sender-avatar amber">SY</span><span class="mail-copy"><strong>Stripe</strong><b>Votre récapitulatif mensuel</b><small>Voici l'activité de votre compte pour cette période...</small></span><span class="mail-meta"><em>AUTO</em><time>1 h</time></span></button>
-          </div>
-          <div class="ai-panel" aria-live="polite"><div class="ai-panel-head"><span>✦ ANALYSE IA</span><span class="confidence">94 % de confiance</span></div><p>Amelia évalue Avatar AI pour une équipe de 12 personnes et souhaite mieux comprendre l'intégration et la sécurité.</p><div class="ai-labels"><span>Vente</span><span class="priority">Priorité haute</span><span>Réponse requise</span></div><div class="reply-box"><small>RÉPONSE SUGGÉRÉE</small><p>Bonjour Amelia, merci pour votre message. Une équipe de 12 personnes se prête parfaitement à un déploiement accompagné...</p><div><button class="regenerate-button" type="button">Régénérer</button><button class="copy-button">Copier la réponse</button></div></div></div>
-        </div>
-      </div></div>
-    </section>
-
-    <section class="section services-section">
-      <div class="section-intro two-col reveal"><div><p class="eyebrow dark">03 / VOS OUTILS, VOTRE MÉTHODE</p><h2>Une automatisation pensée autour de votre activité.</h2></div><p>Nous partons d'un processus répétitif, puis nous le clarifions et construisons un workflow fiable autour des outils que votre équipe utilise déjà.</p></div>
-      <div class="service-list">
-        <article class="service-row reveal"><span class="service-number">01</span><div class="service-icon">@</div><h3>E-mails et communication</h3><p>Organiser les messages, résumer les échanges, préparer les réponses et signaler les demandes urgentes.</p><span class="arrow">↗</span></article>
-        <article class="service-row reveal"><span class="service-number">02</span><div class="service-icon">▤</div><h3>Informations et documents</h3><p>Extraire, classer, structurer et transmettre les informations utiles entre vos systèmes.</p><span class="arrow">↗</span></article>
-        <article class="service-row reveal"><span class="service-number">03</span><div class="service-icon">⌁</div><h3>Workflows métier sur mesure</h3><p>Relier les étapes répétitives entre vos outils avec une automatisation adaptée à vos opérations.</p><span class="arrow">↗</span></article>
-      </div>
-    </section>
-
-    <section class="section process-section" id="process">
-      <div class="section-intro reveal"><p class="eyebrow light">04 / DE L’IDÉE AU QUOTIDIEN</p><h2>De la tâche répétitive au système fiable.</h2></div>
-      <div class="process-track">
-        <article class="process-step reveal"><span>01</span><div class="step-line"><i></i></div><h3>Comprendre</h3><p>Nous identifions le travail répétitif, les blocages, les risques et le résultat attendu.</p></article>
-        <article class="process-step reveal"><span>02</span><div class="step-line"><i></i></div><h3>Concevoir</h3><p>Nous cartographions le workflow, les permissions, les validations humaines et les objectifs.</p></article>
-        <article class="process-step reveal"><span>03</span><div class="step-line"><i></i></div><h3>Construire et tester</h3><p>Nous développons l'automatisation et vérifions sa qualité sur des cas réalistes.</p></article>
-        <article class="process-step reveal"><span>04</span><div class="step-line"><i></i></div><h3>Lancer et améliorer</h3><p>Nous la déployons progressivement, mesurons ses performances et l'affinons avec vos retours.</p></article>
-      </div>
-    </section>
-
-    <section class="section manifesto" id="security">
-      <div class="manifesto-symbol" aria-hidden="true"><svg viewBox="0 0 100 70"><path d="M5 58 31 13l26 45H5Zm15-8h22L31 31 20 50Z" fill="currentColor" fill-rule="evenodd"/><path d="M43 15h51L68.5 61 43 15Zm18 10 7.5 14L76 25H61Z" fill="currentColor" fill-rule="evenodd"/></svg></div>
-      <div class="manifesto-copy reveal"><p class="eyebrow dark">05 / UNE CONVICTION SIMPLE</p><h2>Propulsé par l'IA.<br>Dirigé par l'humain.</h2><p class="manifesto-lede">La vitesse n'a de valeur que si le résultat est fiable.</p><p>Avatar AI automatise la préparation, l'organisation et le traitement répétitif tout en laissant les décisions et la communication externe entre vos mains.</p></div>
-      <div class="principles reveal"><div><span>01</span><p>Chaque résultat important peut être vérifié et modifié.</p></div><div><span>02</span><p>Les résultats incertains sont clairement signalés.</p></div><div><span>03</span><p>Les actions sensibles exigent une validation humaine.</p></div><div><span>04</span><p>Chaque workflow utilise uniquement les accès nécessaires.</p></div></div>
-    </section>
-
-    <section class="section security-section"><div class="security-card reveal">
-      <div><p class="eyebrow light">SÉCURITÉ DÈS LA CONCEPTION</p><h2>Pensé pour les données d'entreprise, pas pour l'expérimentation imprudente.</h2></div>
-      <div class="security-grid"><p><span>◇</span> Accès strictement nécessaires</p><p><span>◇</span> Identifiants chiffrés</p><p><span>◇</span> Données clients isolées</p><p><span>◇</span> Activité traçable</p><p><span>◇</span> Conservation limitée</p><p><span>◇</span> Validation humaine</p></div>
-    </div></section>
-
-    <section class="section audience-section">
-      <div class="section-intro reveal"><p class="eyebrow dark">POUR QUI</p><h2>Conçu pour celles et ceux qui font avancer leur activité.</h2></div>
-      <div class="audience-grid"><article class="reveal"><span>01</span><h3>Dirigeants de PME</h3><p>Faites avancer les demandes sans vivre dans votre boîte mail.</p></article><article class="reveal"><span>02</span><h3>Équipes commerciales</h3><p>Qualifiez les prospects et préparez les relances plus rapidement.</p></article><article class="reveal"><span>03</span><h3>Équipes support</h3><p>Traitez les demandes récurrentes avec davantage de cohérence.</p></article><article class="reveal"><span>04</span><h3>Professionnels</h3><p>Consacrez moins de temps à l'administratif et plus à vos clients.</p></article></div>
-    </section>
-
-    <section class="section faq-section" id="faq">
-      <div class="faq-heading reveal"><p class="eyebrow dark">06 / QUESTIONS FRÉQUENTES</p><h2>L'essentiel avant de commencer.</h2></div>
-      <div class="faq-list reveal">
-        <details open><summary>Que peut automatiser Avatar AI ?<span>+</span></summary><p>Nous nous concentrons sur les workflows répétitifs et riches en information : trier et résumer les messages, préparer les réponses, extraire des données de documents et relier les étapes entre vos outils.</p></details>
-        <details><summary>L'automatisation est-elle adaptée à mon entreprise ?<span>+</span></summary><p>Oui. Nous partons de vos processus, règles, outils et besoins de validation pour construire le workflow fiable le plus simple possible.</p></details>
-        <details><summary>L'IA peut-elle agir sans validation ?<span>+</span></summary><p>Les actions importantes restent sous contrôle humain. Nous définissons des étapes de validation et des permissions adaptées au niveau de risque.</p></details>
-        <details><summary>L'assistant e-mail envoie-t-il des réponses automatiquement ?<span>+</span></summary><p>Non. Il prépare une suggestion modifiable, mais n'envoie, ne supprime, n'archive et ne modifie jamais vos e-mails automatiquement.</p></details>
-        <details><summary>Comment protégez-vous les données professionnelles ?<span>+</span></summary><p>Notre approche repose sur des accès minimaux, des identifiants chiffrés, des données clients isolées, une conservation limitée et une activité traçable.</p></details>
-      </div>
-    </section>
-
-    <section class="contact-section" id="contact">
-      <div class="contact-grid" aria-hidden="true"></div>
-      <div class="contact-inner reveal"><p class="eyebrow light">LE PROCHAIN CHAPITRE COMMENCE AVEC VOUS</p><h2>Quelle tâche aimeriez-vous ne plus faire manuellement ?</h2><p>Expliquez-nous où votre équipe perd du temps. Nous vous aiderons à définir le bon workflow, le niveau d'automatisation adapté et une première étape concrète.</p><a class="button button-primary contact-cta" href="./reservation.html">Parlons de votre projet <span aria-hidden="true">↗</span></a><small>Réservez un appel Google Meet ou envoyez-nous un e-mail.</small></div>
-    </section>
-  </main>
-
-  <footer class="site-footer">
-    <div class="footer-brand"><div class="footer-lockup"><div class="footer-logo"><svg viewBox="0 0 100 70" aria-hidden="true"><path d="M5 58 31 13l26 45H5Zm15-8h22L31 31 20 50Z" fill="currentColor" fill-rule="evenodd"/><path d="M43 15h51L68.5 61 43 15Zm18 10 7.5 14L76 25H61Z" fill="currentColor" fill-rule="evenodd"/></svg></div><span class="brand-name">AVATAR <b>AI</b></span></div><p>L'automatisation IA pour les entreprises<br>qui veulent garder le contrôle.</p></div>
-    <div class="footer-links"><a href="#solutions">Solutions</a><a href="#process">Notre méthode</a><a href="#security">Sécurité</a><a href="#faq">FAQ</a><a href="mailto:contact@avatar-ai.xyz">contact@avatar-ai.xyz</a></div>
-    <div class="footer-wordmark" aria-hidden="true">AVATAR AI<span>↗</span></div><div class="footer-meta"><span>© 2026 AVATAR AI</span><span>PROPULSÉ PAR L'IA · DIRIGÉ PAR L'HUMAIN</span></div>
-  </footer>
-  <script src="./script.js"></script>
-</body>
-</html>
+<body class="home-page">
+ <a class="skip-link" href="#main">Aller au contenu</a>
+ <header class="site-header">
+  <p class="page-label">Automatisez le répétitif. Gardez le contrôle.</p>
+  <div class="header-actions"><a class="header-booking" href="./reservation.html">Réserver un échange ↗</a></div>
+ </header>
+ <button class="menu-toggle" type="button" aria-label="Ouvrir le menu" aria-expanded="false" aria-controls="site-menu"><span></span><span></span></button>
+ <dialog class="navigation-drawer" id="site-menu" aria-label="Navigation principale">
+  <div class="drawer-top"><a href="mailto:contact@avatar-ai.xyz">E-mail ↗</a><button class="menu-close" type="button" aria-label="Fermer le menu">×</button></div>
+  <nav><a href="./index.html" aria-current="page">Accueil</a>
+<a href="./approche.html">Approche</a>
+<a href="./solutions.html">Solutions</a>
+<a href="./securite.html">Sécurité</a>
+<a href="./questions.html">Questions</a>
+<a href="./reservation.html">Réserver</a></nav>
+  <div class="drawer-bottom"><a href="mailto:contact@avatar-ai.xyz">contact@avatar-ai.xyz</a><span>Avatar AI · Automatisation, contrôle humain</span></div>
+ </dialog>
+ <noscript><nav class="no-script-nav" aria-label="Navigation"><a href="./index.html" aria-current="page">Accueil</a>
+<a href="./approche.html">Approche</a>
+<a href="./solutions.html">Solutions</a>
+<a href="./securite.html">Sécurité</a>
+<a href="./questions.html">Questions</a>
+<a href="./reservation.html">Réserver</a></nav></noscript>
+ <a class="floating-brand" href="./index.html" aria-label="Avatar AI — Accueil"><span class="floating-symbol"><svg viewBox="0 0 100 70" aria-hidden="true"><path d="M5 58 31 13l26 45H5Zm15-8h22L31 31 20 50Z" fill="currentColor" fill-rule="evenodd"/><path d="M43 15h51L68.5 61 43 15Zm18 10 7.5 14L76 25H61Z" fill="currentColor" fill-rule="evenodd"/></svg></span><span class="floating-name">Avatar AI</span></a>
+ <main id="main"><section class="scene scene-opening" id="top" aria-labelledby="top-title"><div class="scene-media"><img src="./assets/silicon-hero.jpg" alt="Cristal de silicium métallique, illustration du potentiel de l’intelligence artificielle." fetchpriority="high" decoding="async"></div><h1 id="top-title" class="sr-only">Automatisez le répétitif. Gardez le contrôle.</h1><a class="scroll-cue" href="#approche" aria-label="Découvrir notre approche">Défiler <span>↓</span></a></section>
+<section class="scene " id="approche" aria-labelledby="approche-title"><div class="scene-media"><img src="./assets/workplace.jpg" alt="Architecture de verre tournée vers le ciel, illustration d’un environnement de travail." loading="lazy" decoding="async"></div><div class="scene-copy"><h2 id="approche-title" class="word-reveal">Libérez le potentiel de votre équipe.</h2><p>Moins de tâches répétitives. Plus de place pour l’essentiel.</p><a class="scene-link" href="./approche.html">Notre approche <span aria-hidden="true">→</span></a></div></section>
+<section class="scene " id="solutions" aria-labelledby="solutions-title"><div class="scene-media"><img src="./assets/servers.jpg" alt="Détail de serveurs informatiques." loading="lazy" decoding="async"></div><div class="scene-copy"><h2 id="solutions-title" class="word-reveal">Vos outils. Une nouvelle intelligence.</h2><p>Des workflows qui organisent l’information et préparent le travail.</p><a class="scene-link" href="./solutions.html">Nos solutions <span aria-hidden="true">→</span></a></div></section>
+<section class="scene " id="security" aria-labelledby="security-title"><div class="scene-media"><img src="./assets/collaboration.jpg" alt="Scène illustrative de collègues en discussion devant de grandes fenêtres." loading="lazy" decoding="async"></div><div class="scene-copy"><h2 id="security-title" class="word-reveal">L’IA avance. Vous décidez.</h2><p>La vitesse n’a de valeur que si vous gardez le contrôle.</p><a class="scene-link" href="./securite.html">Notre engagement <span aria-hidden="true">→</span></a></div></section></main>
+ <footer class="site-footer" id="footer">
+  <h2>Automatisez le répétitif.<br>Gardez le contrôle.</h2>
+  <nav class="footer-nav" aria-label="Navigation de pied de page"><a href="./index.html" aria-current="page">Accueil</a>
+<a href="./approche.html">Approche</a>
+<a href="./solutions.html">Solutions</a>
+<a href="./securite.html">Sécurité</a>
+<a href="./questions.html">Questions</a>
+<a href="./reservation.html">Réserver</a></nav>
+  <a class="footer-lockup" href="./index.html" aria-label="Avatar AI — Retour à l’accueil"><svg viewBox="0 0 100 70" aria-hidden="true"><path d="M5 58 31 13l26 45H5Zm15-8h22L31 31 20 50Z" fill="currentColor" fill-rule="evenodd"/><path d="M43 15h51L68.5 61 43 15Zm18 10 7.5 14L76 25H61Z" fill="currentColor" fill-rule="evenodd"/></svg><span>Avatar AI</span></a>
+  <div class="footer-contact"><a href="./reservation.html">Réserver un échange ↗</a><a href="mailto:contact@avatar-ai.xyz">contact@avatar-ai.xyz ↗</a></div>
+  <div class="footer-meta"><span>© 2026 Avatar AI</span><span>Propulsé par l’IA. Dirigé par l’humain.</span><a href="./credits.html">Crédits visuels</a></div>
+ </footer>
+ <div class="page-curtain" aria-hidden="true"><svg viewBox="0 0 100 70" aria-hidden="true"><path d="M5 58 31 13l26 45H5Zm15-8h22L31 31 20 50Z" fill="currentColor" fill-rule="evenodd"/><path d="M43 15h51L68.5 61 43 15Zm18 10 7.5 14L76 25H61Z" fill="currentColor" fill-rule="evenodd"/></svg></div>
+</body></html>

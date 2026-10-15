@@ -1,37 +1,46 @@
-# Avatar AI
+# Avatar AI — navigation et expérience
 
-Site vitrine français d’Avatar AI, destiné aux PME et aux professionnels. Le site reste statique, sans dépendance ni étape de build.
+Site statique français, sans framework ni dépendance de build.
 
-## Consulter le site
+## Structure
 
-Ouvrir `index.html` pour une consultation locale, ou servir ce dossier avec un serveur HTTP statique pour tester l’ensemble des interactions. La page de réservation est `reservation.html`.
+- `index.html` : quatre scènes photographiques plein écran, puis un pied de page de navigation.
+- `approche.html` : méthode, problèmes résolus et publics concernés.
+- `solutions.html` : assistant e-mail interactif et autres possibilités d’automatisation.
+- `securite.html` : contrôle humain et principes de sécurité.
+- `questions.html` : FAQ d’origine.
+- `reservation.html` : calendrier Google Appointment Scheduling d’origine et contact e-mail prérempli.
+- `credits.html` : provenance des images et mention des scènes illustratives.
 
-## Modifier le site
+`styles.css` contient l’expérience commune : scènes, menu latéral, marque fixe, navigation et transitions. `content.css` conserve les composants de contenu détaillé. `reservation.css` gère la page de réservation. `script.js` anime la navigation ; `demo.js` pilote uniquement la démonstration locale.
 
-- `index.html` : contenu de la page d’accueil, navigation, démonstration et FAQ.
-- `styles.css` : identité visuelle et mise en page responsive.
-- `script.js` : menu accessible et démonstration interactive des e-mails.
-- `reservation.html` et `reservation.css` : page de réservation et contact par e-mail.
-- `assets/avatar-sculpture.svg` : illustration vectorielle originale, dérivée du symbole Avatar AI.
+## Parcours
 
-Le contenu et les liens de contact sont en français. Les messages de la démonstration sont fictifs ; elle n’accède à aucune boîte mail et n’envoie aucun message. Les boutons de filtre, de sélection, de régénération et de copie fonctionnent localement.
+La page d’accueil reprend le rythme du site de référence General Matter : grandes images bord à bord, texte court, marque en bas à gauche qui se réduit au défilement, menu à droite sur ordinateur et sur toute la largeur sur mobile, puis pages dédiées pour approfondir.
 
-## Réserver un échange
+Le défilement reste natif. Aucun défilement forcé ni snap n’est imposé. Le réglage système de réduction des animations est respecté. Les liens sont de vrais liens HTML ; les retours navigateur, ouvertures dans un nouvel onglet et liens profonds restent disponibles. Sans JavaScript, une navigation de secours reste visible.
 
-Tous les liens de réservation mènent à `reservation.html`. Cette page conserve le calendrier Google Appointment Scheduling d’origine et son URL exacte. Les disponibilités et la confirmation de rendez-vous restent gérées par Google Calendar. Un lien direct vers ce même calendrier est également disponible si le navigateur bloque son intégration.
+Les anciens liens `#process`, `#faq` et `#contact` mènent respectivement à la méthode, à la FAQ et à la réservation. `#solutions` et `#security` conservent leurs panneaux sur l’accueil.
 
-Le contact reste `contact@avatar-ai.xyz`, avec le message prérempli d’origine sur la page de réservation.
+## Réservation et démonstration
 
-## Vérification avant publication
+L’URL du calendrier et le lien e-mail prérempli sont identiques au dépôt original. Le lien direct Google Calendar reste disponible si l’intégration est bloquée. Aucun rendez-vous de test n’a été confirmé.
 
-1. Vérifier l’accueil et le menu sur ordinateur et mobile ; la touche Échap ferme le menu.
-2. Tester les trois filtres de la démonstration, sélectionner un message, régénérer une suggestion et la copier.
-3. Ouvrir les questions fréquentes.
-4. Ouvrir la page de réservation, vérifier les disponibilités Google Calendar et le retour à l’accueil. Ne confirmer un rendez-vous que pour un besoin réel.
-5. Vérifier les liens e-mail et les ancres des sections.
+Les trois messages de démonstration sont fictifs. Les filtres, la sélection, la régénération et la copie fonctionnent localement. Aucun accès à une boîte mail ni aucun envoi de message n’est effectué.
 
-## Déploiement
+## Aperçu et déploiement
 
-Publier la racine du dépôt sur l’hébergement existant. Aucune commande de build ni dossier de sortie ne sont nécessaires. `vercel.json` conserve l’option `cleanUrls`.
+Servir ce dossier avec un serveur HTTP statique. L’aperçu de cette session est `http://localhost:4173/`. Il dépend du serveur local actif. Les fichiers HTML peuvent aussi être ouverts directement pour consulter la version enregistrée.
 
-La refonte est préparée sur la branche locale `codex/general-matter-ui`. Elle n’est pas publiée automatiquement. La publication sur le dépôt distant se fait après validation.
+Vercel continue à publier la racine du dépôt, sans build. `vercel.json` conserve `cleanUrls`. Les changements restent sur la branche locale `codex/general-matter-ui` tant qu’une publication n’est pas autorisée.
+
+## Vérification effectuée
+
+- Accueil et menu sur ordinateur et mobile ; fermeture par Échap.
+- Réduction du logo pendant le défilement, accès aux pages détaillées et retour navigateur.
+- Filtres et interactions de la démonstration e-mail.
+- Accordéons de la FAQ.
+- Chargement du calendrier intégré et affichage de créneaux disponibles.
+- Vérification des liens locaux, des ancres, des assets et de la conservation du calendrier et des contacts.
+
+Les sources et prompts des images sont détaillés dans `ASSETS.md`.
