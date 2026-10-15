@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="1100" viewBox="0 0 1600 1100">
+<defs>
+ <linearGradient id="bg" x2="0" y2="1"><stop stop-color="#b9b9b5"/><stop offset=".5" stop-color="#d4d3cf"/><stop offset="1" stop-color="#c4c4c0"/></linearGradient>
+ <linearGradient id="edge" x1="0" x2="1" y1="0" y2=".8"><stop stop-color="#f7f7f3"/><stop offset=".22" stop-color="#888b89"/><stop offset=".49" stop-color="#3d4344"/><stop offset=".68" stop-color="#c1c5c4"/><stop offset="1" stop-color="#5c6060"/></linearGradient>
+ <linearGradient id="face" x1=".15" y1="0" x2=".85" y2="1"><stop stop-color="#fff"/><stop offset=".15" stop-color="#e1e4e1"/><stop offset=".3" stop-color="#a5abaa"/><stop offset=".43" stop-color="#e5e8e4"/><stop offset=".54" stop-color="#f4f5ef"/><stop offset=".67" stop-color="#7c8383"/><stop offset=".81" stop-color="#454d50"/><stop offset="1" stop-color="#aeb3b0"/></linearGradient>
+ <linearGradient id="cut" x2="1" y2=".8"><stop stop-color="#181f22"/><stop offset=".5" stop-color="#838987"/><stop offset="1" stop-color="#d7dad4"/></linearGradient>
+ <filter id="shadow" x="-.5" y="-1" width="2" height="3"><feGaussianBlur stdDeviation="24"/></filter>
+ <filter id="metal" x="-.05" y="-.05" width="1.1" height="1.1"><feTurbulence type="fractalNoise" baseFrequency=".65" numOctaves="3" seed="7" result="noise"/><feColorMatrix in="noise" type="saturate" values="0"/><feComposite operator="in" in2="SourceGraphic"/><feBlend in="SourceGraphic" mode="soft-light"/></filter>
+ <path id="shape" d="M80 590 380 70 680 590H80Zm161-93h278L380 256 241 497ZM515 90h610L820 620 515 90Zm167 96 138 240 139-240H682Z" fill-rule="evenodd"/>
+</defs>
+<path fill="url(#bg)" d="M0 0h1600v1100H0z"/>
+<ellipse cx="890" cy="929" rx="525" ry="42" fill="#424742" opacity=".3" filter="url(#shadow)"/>
+<g transform="translate(160 265) rotate(-13 600 350) skewX(-6)">
+ <use href="#shape" transform="translate(66 68)" fill="#373d3f"/>
+ <path d="m80 590 66 68h600l-66-68ZM380 70l66 68 300 520-66-68ZM515 90l66 68 305 530-66-68ZM1125 90l66 68-305 530-66-68Z" fill="url(#edge)"/>
+ <path d="m241 497 66 68 139-241-66-68ZM380 256l66 68 139 241-66-68ZM682 186l66 68h277l-66-68ZM959 186l66 68-139 240-66-68Z" fill="url(#cut)"/>
+ <use href="#shape" fill="url(#face)" stroke="#edf0e9" stroke-opacity=".65" stroke-width="2"/>
+ <use href="#shape" fill="url(#face)" opacity=".24" filter="url(#metal)"/>
+ <path d="M80 590 380 70l300 520M515 90h610L820 620" fill="none" stroke="#fff" stroke-opacity=".8" stroke-width="2"/>
+</g></svg>
