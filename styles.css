@@ -25,8 +25,8 @@ a:focus-visible, button:focus-visible, summary:focus-visible { outline: 2px soli
 .page-label { max-width: 70%; font-size: clamp(17px, 1.7vw, 24px); font-weight: 700; letter-spacing: -.04em; line-height: 1.15; }
 .header-actions { display: flex; align-items: center; gap: 28px; }
 .header-booking { font-size: 12px; border-bottom: 1px solid #ffffff80; white-space: nowrap; }
-.menu-toggle { position: fixed; top: 15px; right: calc(var(--gutter) - 8px); z-index: 80; width: 44px; height: 44px; border: 0; padding: 0; background: transparent; color: white; margin: 0; mix-blend-mode: difference; }
-.menu-toggle span { position: absolute; width: 24px; height: 1px; left: 10px; background: currentColor; top: 17px; }
+.menu-toggle { position: fixed; top: 15px; right: calc(var(--gutter) - 8px); z-index: 80; width: 44px; height: 44px; border: 0; padding: 0; background: var(--paper); color: var(--ink); margin: 0; border-radius: 50%; box-shadow: 0 0 0 1px #20261f33, 0 2px 12px #0003; }
+.menu-toggle span { position: absolute; width: 24px; height: 2px; left: 10px; background: currentColor; top: 17px; border-radius: 1px; }
 .menu-toggle span:nth-child(2) { top: 24px; }
 .header-actions { padding-right: 58px; }
 .floating-brand { position: fixed; left: var(--gutter); bottom: 24px; z-index: 35; color: white; display: flex; flex-direction: column; align-items: flex-start; mix-blend-mode: difference; transition: opacity .3s; }
@@ -62,7 +62,9 @@ a:focus-visible, button:focus-visible, summary:focus-visible { outline: 2px soli
 .navigation-drawer[open] { display: flex; flex-direction: column; animation: drawer-in .45s cubic-bezier(.22,.7,.25,1); }
 .navigation-drawer::backdrop { background: #0009; backdrop-filter: blur(3px); }
 .drawer-top { display: flex; align-items: center; justify-content: space-between; padding-top: 14px; font-size: 21px; letter-spacing: -.04em; }
-.menu-close { border: 0; background: none; width: 44px; height: 44px; font-size: 32px; font-weight: 300; line-height: 1; }
+.menu-close { border: 0; padding: 0; background: var(--paper); color: var(--ink); border-radius: 50%; width: 44px; height: 44px; font-size: 32px; font-weight: 300; line-height: 1; box-shadow: 0 0 0 1px #20261f33, 0 2px 12px #0003; }
+.menu-toggle:hover, .menu-close:hover { background: #fff; }
+.menu-toggle:focus-visible, .menu-close:focus-visible { outline: 2px solid var(--ink); outline-offset: 3px; box-shadow: 0 0 0 6px var(--paper); }
 .navigation-drawer nav { display: flex; flex-direction: column; justify-content: center; flex: 1; padding: 50px 0; }
 .navigation-drawer nav a { width: fit-content; font-size: clamp(37px,3.5vw,57px); font-weight: 700; letter-spacing: -.055em; line-height: 1.12; transition: opacity .2s, transform .2s; }
 .navigation-drawer nav a:hover { opacity: .6; transform: translateX(5px); }
