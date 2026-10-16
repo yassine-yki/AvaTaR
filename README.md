@@ -18,7 +18,7 @@ Site statique français, sans framework ni dépendance de build.
 
 La page d’accueil reprend le rythme du site de référence General Matter : grandes images bord à bord, texte court, marque en bas à gauche qui se réduit au défilement, menu à droite sur ordinateur et sur toute la largeur sur mobile, puis pages dédiées pour approfondir.
 
-Le défilement reste natif. Aucun défilement forcé ni snap n’est imposé. Le réglage système de réduction des animations est respecté. Les liens sont de vrais liens HTML ; les retours navigateur, ouvertures dans un nouvel onglet et liens profonds restent disponibles. Sans JavaScript, une navigation de secours reste visible.
+La molette est lissée avec Lenis 1.3.17, servi localement. Le tactile et le clavier restent natifs ; aucun snap n’est imposé. Sur ordinateur, l’image d’ouverture reste en place pendant un demi-écran supplémentaire, puis zoome et s’assombrit progressivement. Le pied de page se découvre sous la dernière scène. Le réglage système de réduction des animations désactive le lissage, le zoom et cette retenue initiale. Les liens HTML, retours navigateur et liens profonds restent disponibles, avec une navigation de secours sans JavaScript. La réservation conserve son défilement natif pour préserver le calendrier intégré.
 
 Les anciens liens `#process`, `#faq` et `#contact` mènent respectivement à la méthode, à la FAQ et à la réservation. `#solutions` et `#security` conservent leurs panneaux sur l’accueil.
 
@@ -32,7 +32,7 @@ Les trois messages de démonstration sont fictifs. Les filtres, la sélection, l
 
 Servir ce dossier avec un serveur HTTP statique. L’aperçu de cette session est `http://localhost:4173/`. Il dépend du serveur local actif. Les fichiers HTML peuvent aussi être ouverts directement pour consulter la version enregistrée.
 
-Vercel continue à publier la racine du dépôt, sans build. `vercel.json` conserve `cleanUrls`. Les changements restent sur la branche locale `codex/general-matter-ui` tant qu’une publication n’est pas autorisée.
+Vercel continue à publier la racine du dépôt, sans build. `vercel.json` conserve `cleanUrls`. Les changements approuvés sont publiés depuis `main`.
 
 ## Vérification effectuée
 
@@ -44,3 +44,7 @@ Vercel continue à publier la racine du dépôt, sans build. `vercel.json` conse
 - Vérification des liens locaux, des ancres, des assets et de la conservation du calendrier et des contacts.
 
 Les sources et prompts des images sont détaillés dans `ASSETS.md`.
+
+## Dépendance de mouvement
+
+`assets/vendor/lenis-1.3.17.min.js` est une copie locale de Lenis (MIT), version utilisée par le site de référence lors de la comparaison du 16 octobre 2026. Sa licence est conservée à côté du fichier. Le site reste consultable et navigable si cette dépendance est indisponible. Aucune dépendance de build.

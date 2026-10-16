@@ -4,16 +4,21 @@ const closeButton = document.querySelector('.menu-close');
 const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
 function closeMenu() {
   drawer?.close();
+  smoothScroll?.start();
+  scheduleScroll();
   document.body.classList.remove('menu-open');
   menuButton?.setAttribute('aria-expanded', 'false');
 }
 menuButton?.addEventListener('click', () => {
+  smoothScroll?.stop();
   drawer.showModal();
   document.body.classList.add('menu-open');
   menuButton.setAttribute('aria-expanded', 'true');
 });
 closeButton?.addEventListener('click', closeMenu);
 drawer?.addEventListener('close', () => {
+  smoothScroll?.start();
+  scheduleScroll();
   document.body.classList.remove('menu-open');
   menuButton?.setAttribute('aria-expanded', 'false');
 });
@@ -22,62 +27,129 @@ drawer?.addEventListener('click', event => {
   const rect = drawer.getBoundingClientRect();
   if (event.clientX < rect.left || event.clientX > rect.right || event.clientY < rect.top || event.clientY > rect.bottom) closeMenu();
 });
-// Reveal words in reading order. The original heading remains available without JS.
-const headings = document.querySelectorAll('.word-reveal');
+// The page stays in the native document flow. Lenis only smooths wheel input.
+const scenes = [...document.querySelectorAll('.scene')];
+const hero = scenes[0];
+const heroImage = hero?.querySelector('.scene-media img');
+const heroMedia = hero?.querySelector('.scene-media');
+const footer = document.querySelector('.site-footer');
+const footerReveal = document.querySelector('.footer-reveal');
+const brandName = document.querySelector('.floating-name');
+const root = document.documentElement;
+const clamp = value => Math.min(1, Math.max(0, value));
+let smoothScroll = null;
+let frameId = 0;
+let scrollDirty = true;
+let measureDirty = true;
+let heroHeight = innerHeight;
+let footerHeight = 0;
+
+// Preserve each heading's accessible name while revealing letters within whole words.
+const headings = [...document.querySelectorAll('.word-reveal')];
 headings.forEach(heading => {
+  const text = [...heading.childNodes].map(node => node.nodeName === 'BR' ? '\n' : node.textContent).join('').trim();
+  heading.setAttribute('aria-label', text.replace(/\s+/g, ' '));
   let index = 0;
-  const children = [...heading.childNodes];
-  children.forEach(node => {
-    if (node.nodeType !== Node.TEXT_NODE) return;
-    const fragment = document.createDocumentFragment();
-    node.textContent.split(/(\s+)/).forEach(text => {
-      if (!text.trim()) fragment.append(document.createTextNode(text));
-      else {
-        const span = document.createElement('span');
-        span.className = 'word'; span.style.setProperty('--word', index++); span.textContent = text;
-        fragment.append(span);
-      }
-    });
-    node.replaceWith(fragment);
+  const fragment = document.createDocumentFragment();
+  text.split(/(\s+)/).forEach(word => {
+    if (!word.trim()) { fragment.append(word.includes('\n') ? document.createElement('br') : document.createTextNode(word)); return; }
+    const wrap = document.createElement('span');
+    wrap.className = 'reveal-word';
+    wrap.setAttribute('aria-hidden', 'true');
+    for (const letter of word) {
+      const char = document.createElement('span');
+      char.className = 'char';
+      char.style.setProperty('--char', index++);
+      char.textContent = letter;
+      wrap.append(char);
+    }
+    fragment.append(wrap);
   });
+  heading.replaceChildren(fragment);
 });
+function revealHeading(heading) {
+  heading.classList.add('is-visible');
+  heading.closest('.scene-copy')?.classList.add('is-visible');
+}
 if ('IntersectionObserver' in window) {
   const observer = new IntersectionObserver(entries => {
     entries.forEach(entry => {
-      if (entry.isIntersecting) { entry.target.classList.add('is-visible'); observer.unobserve(entry.target); }
+      if (entry.isIntersecting) { revealHeading(entry.target); observer.unobserve(entry.target); }
     });
-  }, { threshold: .4 });
+  }, { rootMargin: '0px 0px -10% 0px', threshold: 0 });
   headings.forEach(heading => observer.observe(heading));
-} else headings.forEach(heading => heading.classList.add('is-visible'));
-// Native scrolling remains intact: only images and the corner lockup respond to it.
-const scenes = [...document.querySelectorAll('.scene')];
-const footer = document.querySelector('.site-footer');
-let scrollPending = false;
+} else headings.forEach(revealHeading);
+
 function paintScroll() {
-  scrollPending = false;
-  const height = window.innerHeight;
-  const progress = Math.min(1, Math.max(0, window.scrollY / (height * .65)));
-  document.body.classList.toggle('past-hero', Boolean(scenes[0] && scenes[0].getBoundingClientRect().bottom <= 0));
-  const startSize = window.innerWidth <= 600 ? 140 : 190;
-  const size = reducedMotion.matches ? (progress > .15 ? 62 : startSize) : startSize - (startSize - 62) * progress;
-  document.documentElement.style.setProperty('--brand-size', `${size}px`);
-  document.documentElement.style.setProperty('--brand-name-opacity', String(1 - Math.min(1,progress * 2)));
-  document.documentElement.style.setProperty('--brand-name-height', `${64 * (1-progress)}px`);
-  document.body.classList.toggle('footer-visible', Boolean(footer && footer.getBoundingClientRect().top < height - 80));
-  if (!reducedMotion.matches) {
-    scenes.forEach(scene => {
-      const rect = scene.getBoundingClientRect();
-      if (rect.top > height || rect.bottom < 0) return;
-      const image = scene.querySelector('.scene-media img');
-      const offset = Math.max(-height*.055, Math.min(height*.055, -rect.top*.12));
-      image.style.transform = `translate3d(0,${offset}px,0) scale(1.12)`;
-    });
+  scrollDirty = false;
+  if (measureDirty) {
+    heroHeight = heroMedia?.clientHeight || innerHeight;
+    footerHeight = footer?.offsetHeight || 0;
+    root.style.setProperty('--brand-name-offset', (brandName?.offsetHeight || 0) + 'px');
+    measureDirty = false;
   }
+  // Read geometry together before updating compositor-only visual properties.
+  const heroRect = hero?.getBoundingClientRect();
+  const footerRect = (footerReveal || footer)?.getBoundingClientRect();
+  const travel = heroRect ? Math.max(0, -heroRect.top) : 0;
+  const heroProgress = reducedMotion.matches ? 0 : clamp(travel / heroHeight);
+  const brandProgress = heroRect ? clamp(travel / (heroHeight * .55)) : 1;
+  const footerProgress = footerRect && footerHeight ? clamp((innerHeight - footerRect.top) / footerHeight) : 0;
+  root.style.setProperty('--brand-progress', String(reducedMotion.matches ? 1 : brandProgress));
+  hero?.style.setProperty('--hero-progress', String(heroProgress));
+  if (heroImage) heroImage.style.transform = reducedMotion.matches ? '' : 'scale(' + (1 + .2 * heroProgress) + ')';
+  if (footerReveal) footerReveal.style.setProperty('--footer-shift', reducedMotion.matches ? '0px' : ((footerProgress - 1) * footerHeight).toFixed(2) + 'px');
+  document.body.classList.toggle('past-hero', Boolean(heroRect && heroRect.bottom <= 0));
+  document.body.classList.toggle('has-scrolled', scrollY > 40);
+  document.body.classList.toggle('footer-visible', Boolean(footerRect && footerRect.top < innerHeight - 80));
 }
-function scheduleScroll() { if (!scrollPending) { scrollPending = true; requestAnimationFrame(paintScroll); } }
+function frame(time) {
+  frameId = 0;
+  smoothScroll?.raf(time);
+  if (scrollDirty) paintScroll();
+  if (smoothScroll && !smoothScroll.isStopped && !document.hidden && !frameId) frameId = requestAnimationFrame(frame);
+}
+function scheduleScroll() {
+  scrollDirty = true;
+  if (!frameId && !document.hidden) frameId = requestAnimationFrame(frame);
+}
+function configureMotion() {
+  smoothScroll?.destroy();
+  smoothScroll = null;
+  root.classList.toggle('motion-ready', !reducedMotion.matches);
+  if (!reducedMotion.matches && scenes.length && typeof window.Lenis === 'function') {
+    smoothScroll = new window.Lenis({
+      lerp: .1,
+      smoothWheel: true,
+      syncTouch: false,
+      autoRaf: false,
+      anchors: true,
+      prevent: node => node.closest?.('.navigation-drawer, [data-native-scroll]')
+    });
+    smoothScroll.on('scroll', () => { scrollDirty = true; });
+    if (drawer?.open) smoothScroll.stop();
+  }
+  measureDirty = true;
+  scheduleScroll();
+}
 window.addEventListener('scroll', scheduleScroll, { passive: true });
-window.addEventListener('resize', scheduleScroll);
-reducedMotion.addEventListener('change', scheduleScroll);
+window.addEventListener('resize', () => { measureDirty = true; scheduleScroll(); }, { passive: true });
+// The clipped footer must also be fully reachable by keyboard.
+footerReveal?.addEventListener('focusin', () => {
+  if (footerReveal.getBoundingClientRect().bottom > innerHeight + 1) {
+    const bottom = document.documentElement.scrollHeight - innerHeight;
+    if (smoothScroll) smoothScroll.scrollTo(bottom, { immediate: true });
+    else window.scrollTo({ top: bottom, behavior: 'instant' });
+    scheduleScroll();
+  }
+});
+document.addEventListener('visibilitychange', () => {
+  if (document.hidden) { cancelAnimationFrame(frameId); frameId = 0; }
+  else scheduleScroll();
+});
+window.addEventListener('pagehide', () => { cancelAnimationFrame(frameId); frameId = 0; });
+reducedMotion.addEventListener('change', configureMotion);
+configureMotion();
 paintScroll();
 // Keep real pages, native browser history, and modifier-click behavior.
 let departing = false;
@@ -99,7 +171,7 @@ document.addEventListener('click', event => {
 window.addEventListener('pageshow', event => {
   departing = false;
   document.body.classList.remove('is-departing');
-  if (event.persisted) closeMenu();
+  if (event.persisted) { closeMenu(); configureMotion(); }
   scheduleScroll();
 });
 // Preserve old incoming section bookmarks after the information architecture changed.
