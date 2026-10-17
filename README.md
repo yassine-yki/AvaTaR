@@ -18,7 +18,7 @@ Site statique français, sans framework ni dépendance de build.
 
 La page d’accueil reprend le rythme du site de référence General Matter : grandes images bord à bord, texte court, marque en bas à gauche qui se réduit au défilement, menu à droite sur ordinateur et sur toute la largeur sur mobile, puis pages dédiées pour approfondir.
 
-La molette est lissée avec Lenis 1.3.17, servi localement. Le tactile et le clavier restent natifs ; aucun snap n’est imposé. Sur ordinateur, l’image d’ouverture reste en place pendant un demi-écran supplémentaire, puis zoome et s’assombrit progressivement. Le pied de page se découvre sous la dernière scène. Le réglage système de réduction des animations désactive le lissage, le zoom et cette retenue initiale. Les liens HTML, retours navigateur et liens profonds restent disponibles, avec une navigation de secours sans JavaScript. La réservation conserve son défilement natif pour préserver le calendrier intégré.
+La molette est lissée avec Lenis 1.3.17, servi localement. Le tactile et le clavier restent natifs ; aucun snap n’est imposé. Sur ordinateur, l’image d’ouverture reste en place pendant un demi-écran supplémentaire, puis zoome et s’assombrit progressivement. Le pied de page se découvre sous la dernière scène. Les animations sont activées par défaut, sans sélecteur et sans dépendre d’une préférence enregistrée ou du réglage de l’appareil. Les liens HTML, retours navigateur et liens profonds restent disponibles, avec une navigation de secours sans JavaScript. La réservation conserve son défilement natif pour préserver le calendrier intégré.
 
 Les anciens liens `#process`, `#faq` et `#contact` mènent respectivement à la méthode, à la FAQ et à la réservation. `#solutions` et `#security` conservent leurs panneaux sur l’accueil.
 
@@ -48,7 +48,3 @@ Les sources et prompts des images sont détaillés dans `ASSETS.md`.
 ## Dépendance de mouvement
 
 `assets/vendor/lenis-1.3.17.min.js` est une copie locale de Lenis (MIT), version utilisée par le site de référence lors de la comparaison du 16 octobre 2026. Sa licence est conservée à côté du fichier. Le site reste consultable et navigable si cette dépendance est indisponible. Aucune dépendance de build.
-
-## Choisir les animations
-
-Le menu propose « Animations » : selon l’appareil (par défaut), activées ou réduites. Le choix est mémorisé dans ce navigateur pour ce site, sans modifier les réglages de l’appareil. Si le défilement semble inchangé, vérifier ce menu : un appareil en mode réduction des animations désactive le lissage et le zoom par défaut. La préférence s’applique aussi aux pages suivantes et peut être remise sur « Selon l’appareil ».

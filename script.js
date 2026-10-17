@@ -1,13 +1,6 @@
 const menuButton = document.querySelector('.menu-toggle');
 const drawer = document.querySelector('.navigation-drawer');
 const closeButton = document.querySelector('.menu-close');
-const systemMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
-const motionControl = document.querySelector('[data-motion-preference]');
-const motionStatus = document.querySelector('[data-motion-status]');
-const validMotionChoice = value => ['full', 'reduced'].includes(value) ? value : 'system';
-let motionChoice = 'system';
-try { motionChoice = validMotionChoice(localStorage.getItem('avatar-motion')); } catch { /* Storage may be unavailable. */ }
-const reducedMotion = { get matches() { return motionChoice === 'reduced' || (motionChoice === 'system' && systemMotion.matches); } };
 function closeMenu() {
   drawer?.close();
   smoothScroll?.start();
@@ -98,13 +91,13 @@ function paintScroll() {
   const heroRect = hero?.getBoundingClientRect();
   const footerRect = (footerReveal || footer)?.getBoundingClientRect();
   const travel = heroRect ? Math.max(0, -heroRect.top) : 0;
-  const heroProgress = reducedMotion.matches ? 0 : clamp(travel / heroHeight);
+  const heroProgress = clamp(travel / heroHeight);
   const brandProgress = heroRect ? clamp(travel / (heroHeight * .55)) : 1;
   const footerProgress = footerRect && footerHeight ? clamp((innerHeight - footerRect.top) / footerHeight) : 0;
-  root.style.setProperty('--brand-progress', String(reducedMotion.matches ? 1 : brandProgress));
+  root.style.setProperty('--brand-progress', String(brandProgress));
   hero?.style.setProperty('--hero-progress', String(heroProgress));
-  if (heroImage) heroImage.style.transform = reducedMotion.matches ? '' : 'scale(' + (1 + .2 * heroProgress) + ')';
-  if (footerReveal) footerReveal.style.setProperty('--footer-shift', reducedMotion.matches ? '0px' : ((footerProgress - 1) * footerHeight).toFixed(2) + 'px');
+  if (heroImage) heroImage.style.transform = 'scale(' + (1 + .2 * heroProgress) + ')';
+  if (footerReveal) footerReveal.style.setProperty('--footer-shift', ((footerProgress - 1) * footerHeight).toFixed(2) + 'px');
   document.body.classList.toggle('past-hero', Boolean(heroRect && heroRect.bottom <= 0));
   document.body.classList.toggle('has-scrolled', scrollY > 40);
   document.body.classList.toggle('footer-visible', Boolean(footerRect && footerRect.top < innerHeight - 80));
@@ -122,16 +115,8 @@ function scheduleScroll() {
 function configureMotion() {
   smoothScroll?.destroy();
   smoothScroll = null;
-  root.classList.toggle('motion-ready', !reducedMotion.matches);
-  root.classList.toggle('motion-reduced', reducedMotion.matches);
-  if (motionControl) {
-    motionControl.value = motionChoice;
-    motionControl.closest('.motion-setting').hidden = false;
-  }
-  if (motionStatus) motionStatus.textContent = motionChoice === 'system'
-    ? (reducedMotion.matches ? 'Votre appareil demande des animations réduites.' : 'Votre appareil autorise les animations.')
-    : (reducedMotion.matches ? 'Animations réduites pour ce navigateur.' : 'Animations activées pour ce navigateur.');
-  if (!reducedMotion.matches && scenes.length && typeof window.Lenis === 'function') {
+  root.classList.add('motion-ready');
+  if (scenes.length && typeof window.Lenis === 'function') {
     smoothScroll = new window.Lenis({
       lerp: .1,
       smoothWheel: true,
@@ -162,18 +147,6 @@ document.addEventListener('visibilitychange', () => {
   else scheduleScroll();
 });
 window.addEventListener('pagehide', () => { cancelAnimationFrame(frameId); frameId = 0; });
-systemMotion.addEventListener('change', configureMotion);
-motionControl?.addEventListener('change', () => {
-  motionChoice = validMotionChoice(motionControl.value);
-  try { localStorage.setItem('avatar-motion', motionChoice); } catch { /* The choice still works on this page. */ }
-  configureMotion();
-});
-window.addEventListener('storage', event => {
-  if (event.key === 'avatar-motion' || event.key === null) {
-    motionChoice = validMotionChoice(event.newValue);
-    configureMotion();
-  }
-});
 configureMotion();
 paintScroll();
 // Keep real pages, native browser history, and modifier-click behavior.
@@ -185,7 +158,6 @@ document.addEventListener('click', event => {
   if (!['http:', 'https:', 'file:'].includes(url.protocol) || url.origin !== location.origin) return;
   if (url.pathname === location.pathname && url.hash) return;
   if (!/\.html$/.test(url.pathname) && url.pathname !== '/') return;
-  if (reducedMotion.matches) { closeMenu(); return; }
   event.preventDefault();
   if (departing) return;
   departing = true;
