@@ -48,3 +48,7 @@ Les sources et prompts des images sont détaillés dans `ASSETS.md`.
 ## Dépendance de mouvement
 
 `assets/vendor/lenis-1.3.17.min.js` est une copie locale de Lenis (MIT), version utilisée par le site de référence lors de la comparaison du 16 octobre 2026. Sa licence est conservée à côté du fichier. Le site reste consultable et navigable si cette dépendance est indisponible. Aucune dépendance de build.
+
+## Choisir les animations
+
+Le menu propose « Animations » : selon l’appareil (par défaut), activées ou réduites. Le choix est mémorisé dans ce navigateur pour ce site, sans modifier les réglages de l’appareil. Si le défilement semble inchangé, vérifier ce menu : un appareil en mode réduction des animations désactive le lissage et le zoom par défaut. La préférence s’applique aussi aux pages suivantes et peut être remise sur « Selon l’appareil ».

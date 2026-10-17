@@ -1,7 +1,13 @@
 const menuButton = document.querySelector('.menu-toggle');
 const drawer = document.querySelector('.navigation-drawer');
 const closeButton = document.querySelector('.menu-close');
-const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+const systemMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+const motionControl = document.querySelector('[data-motion-preference]');
+const motionStatus = document.querySelector('[data-motion-status]');
+const validMotionChoice = value => ['full', 'reduced'].includes(value) ? value : 'system';
+let motionChoice = 'system';
+try { motionChoice = validMotionChoice(localStorage.getItem('avatar-motion')); } catch { /* Storage may be unavailable. */ }
+const reducedMotion = { get matches() { return motionChoice === 'reduced' || (motionChoice === 'system' && systemMotion.matches); } };
 function closeMenu() {
   drawer?.close();
   smoothScroll?.start();
@@ -117,6 +123,14 @@ function configureMotion() {
   smoothScroll?.destroy();
   smoothScroll = null;
   root.classList.toggle('motion-ready', !reducedMotion.matches);
+  root.classList.toggle('motion-reduced', reducedMotion.matches);
+  if (motionControl) {
+    motionControl.value = motionChoice;
+    motionControl.closest('.motion-setting').hidden = false;
+  }
+  if (motionStatus) motionStatus.textContent = motionChoice === 'system'
+    ? (reducedMotion.matches ? 'Votre appareil demande des animations réduites.' : 'Votre appareil autorise les animations.')
+    : (reducedMotion.matches ? 'Animations réduites pour ce navigateur.' : 'Animations activées pour ce navigateur.');
   if (!reducedMotion.matches && scenes.length && typeof window.Lenis === 'function') {
     smoothScroll = new window.Lenis({
       lerp: .1,
@@ -148,7 +162,18 @@ document.addEventListener('visibilitychange', () => {
   else scheduleScroll();
 });
 window.addEventListener('pagehide', () => { cancelAnimationFrame(frameId); frameId = 0; });
-reducedMotion.addEventListener('change', configureMotion);
+systemMotion.addEventListener('change', configureMotion);
+motionControl?.addEventListener('change', () => {
+  motionChoice = validMotionChoice(motionControl.value);
+  try { localStorage.setItem('avatar-motion', motionChoice); } catch { /* The choice still works on this page. */ }
+  configureMotion();
+});
+window.addEventListener('storage', event => {
+  if (event.key === 'avatar-motion' || event.key === null) {
+    motionChoice = validMotionChoice(event.newValue);
+    configureMotion();
+  }
+});
 configureMotion();
 paintScroll();
 // Keep real pages, native browser history, and modifier-click behavior.
