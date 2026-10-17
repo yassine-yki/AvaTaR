@@ -216,3 +216,14 @@ html.lenis.lenis-smooth { scroll-behavior: auto !important; }
 @media (min-width:1000px) {
  .has-scrolled:not(.footer-visible) .floating-brand { mix-blend-mode: difference; }
 }
+
+/* Give the opening statement its own space, below the navigation controls. */
+.home-page .site-header { justify-content: center; padding-top: clamp(72px, 9vh, 110px); }
+.home-page .page-label { max-width: min(950px, 88%); font-size: clamp(24px, 2.1vw, 36px); margin-left: clamp(0px, 7vw, 120px); margin-right: auto; text-align: left; text-wrap: balance; text-shadow: 0 2px 14px #0008; }
+.home-page .header-actions { position: absolute; top: 22px; right: var(--gutter); }
+/* Reset offscreen letters immediately so every return starts a fresh reveal. */
+.motion-ready .word-reveal:not(.is-visible) .char { transition: none; }
+@media (max-width:600px) {
+ .home-page .site-header { padding-top: 88px; }
+ .home-page .page-label { max-width: 100%; margin-left: 0; font-size: 25px; }
+}

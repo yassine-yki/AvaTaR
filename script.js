@@ -66,18 +66,18 @@ headings.forEach(heading => {
   });
   heading.replaceChildren(fragment);
 });
-function revealHeading(heading) {
-  heading.classList.add('is-visible');
-  heading.closest('.scene-copy')?.classList.add('is-visible');
+function revealHeading(heading, visible = true) {
+  heading.classList.toggle('is-visible', visible);
+  heading.closest('.scene-copy')?.classList.toggle('is-visible', visible);
 }
 if ('IntersectionObserver' in window) {
   const observer = new IntersectionObserver(entries => {
     entries.forEach(entry => {
-      if (entry.isIntersecting) { revealHeading(entry.target); observer.unobserve(entry.target); }
+      revealHeading(entry.target, entry.isIntersecting);
     });
   }, { rootMargin: '0px 0px -10% 0px', threshold: 0 });
   headings.forEach(heading => observer.observe(heading));
-} else headings.forEach(revealHeading);
+} else headings.forEach(heading => revealHeading(heading));
 
 function paintScroll() {
   scrollDirty = false;
